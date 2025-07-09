@@ -1,5 +1,0 @@
-Description: Reverb effect, plus pulse/CV generator configurable using web interface. 
-Language: C (RPi Pico SDK)
-Creator: Chris Johnson
-Version: 1.1
-Status: Released
