@@ -1,0 +1,5 @@
+Description: Bass-oriented complete monosynth voice consisting of five detuned saw wave oscillators with mixable white noise and adjustable resonant filter. 
+Language: arduino-pico core and Mozzi 2 library
+Creator:  '@todbot / Tod Kurt' 
+Version: 0.1
+Status: Functional but WIP

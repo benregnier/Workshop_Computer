@@ -1,0 +1,5 @@
+Description: USB audio output
+Language: C (RPi Pico SDK)
+Creator: Chris Johnson
+Version: 0.1
+Status: Proof of concept

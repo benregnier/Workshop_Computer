@@ -1,0 +1,5 @@
+Description: Generates CV/Pulse arpeggios
+Language: C (RPi Pico SDK)
+Creator: Tom Waters
+Version: 0.9
+Status: Mostly complete (for now)
