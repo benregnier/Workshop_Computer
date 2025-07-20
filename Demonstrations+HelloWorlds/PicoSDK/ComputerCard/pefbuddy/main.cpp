@@ -1,6 +1,24 @@
 #include "ComputerCard.h"
 #include <math.h>
 
+/*
+ * PefBuddy
+ * -------
+ * This program analyses the signal on Audio In 1 and generates a CV output
+ * representing the detected pitch as well as gate and trigger signals based on
+ * the input level.
+ *
+ *  - A short audio buffer is filled at 48kHz.  When full, the YIN pitch
+ *    detection algorithm estimates the fundamental frequency.
+ *  - The detected pitch is converted to volts-per-octave, quantised to the
+ *    nearest semitone and sent to CV Out 1 using the library's calibrated MIDI
+ *    note helpers.
+ *  - The input envelope is tracked continuously.  When it exceeds a threshold
+ *    set by Knob X, a gate is asserted on Pulse Out 2 and a short trigger is
+ *    sent on Pulse Out 1.  LEDs indicate gate status and whether a valid pitch
+ *    has been detected.
+ */
+
 class PefBuddy : public ComputerCard
 {
     static constexpr int SAMPLE_RATE = 48000;
@@ -100,6 +118,11 @@ class PefBuddy : public ComputerCard
     }
 
 public:
+    /// Called at 48kHz for every audio sample.
+    ///
+    /// Fills the audio buffer, tracks the envelope and generates gate signals.
+    /// When the buffer is full, pitch is detected and CV/LED outputs are
+    /// updated accordingly.
     virtual void ProcessSample() override
     {
         if (bufferIndex < BUFFER_SIZE)
@@ -160,6 +183,8 @@ public:
     }
 };
 
+/// Entry point. Creates the PefBuddy instance, enables input detection and
+/// starts the real-time processing loop.
 int main()
 {
     PefBuddy pb;
